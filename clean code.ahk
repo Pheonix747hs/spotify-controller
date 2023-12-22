@@ -92,17 +92,14 @@ return
 
 ;These labels contain any commands for their respective hotkeys to perform.
 Label1:
-    OutputDebug, % A_ThisLabel
     Send, {Media_Next}
 return
 
 Label2:
-    OutputDebug, % A_ThisLabel
     Send, {Media_Prev}
 return
 
 Label3:
-    OutputDebug, % A_ThisLabel
     IfWinExist, YouTube
     {
         WinActivate, ahk_class Chrome_WidgetWin_0
@@ -114,47 +111,38 @@ Label3:
 return
 
 Label4:
-    OutputDebug, % A_ThisLabel
     Send, {Volume_Up}
 return
 
 Label5:
-    OutputDebug, % A_ThisLabel
     Send, {Volume_Down}
 return
 
 Label6:
-    OutputDebug, % A_ThisLabel
     Send, ^{s}
 return
 
 Label7:
-    OutputDebug, % A_ThisLabel
     Send, ^{r}
 return
 
 Label8:
-    OutputDebug, % A_ThisLabel
     spotifyminmaxtoggle()
 return
 
 Label9:
-    OutputDebug, % A_ThisLabel
     playlist("fav", minival)
 return
 
 Label10:
-    OutputDebug, % A_ThisLabel
     SendMessage 0x112, 0xF140, 0, , Program Manager  ; Monitor off
 return
 
 Label11:
-    OutputDebug, % A_ThisLabel
     Send, +{Right}
 return
 
 Label12:
-    OutputDebug, % A_ThisLabel
     Send, +{Left}
 return
 
@@ -200,7 +188,11 @@ spotifyminmaxtoggle()
 {
 
     IfWinNotExist, ahk_class Chrome_WidgetWin_0
-        Run, "C:\Users\OJASVIN\AppData\Roaming\Spotify\Spotify.exe"
+        username := A_UserName
+        basepath := "C:\Users\"
+        remainingpath:= "\AppData\Roaming\Spotify\Spotify.exe"
+        finalpath := basepath username remainingpath
+        Run, %finalpath%
     IfWinNotActive, ahk_class Chrome_WidgetWin_0
     {
         WinActivate, ahk_class Chrome_WidgetWin_0
