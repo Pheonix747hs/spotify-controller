@@ -188,11 +188,13 @@ spotifyminmaxtoggle()
 {
 
     IfWinNotExist, ahk_class Chrome_WidgetWin_0
+    {
         username := A_UserName
         basepath := "C:\Users\"
         remainingpath:= "\AppData\Roaming\Spotify\Spotify.exe"
         finalpath := basepath username remainingpath
         Run, %finalpath%
+    }
     IfWinNotActive, ahk_class Chrome_WidgetWin_0
     {
         WinActivate, ahk_class Chrome_WidgetWin_0
